@@ -1,14 +1,42 @@
 import React from "react";
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../css/SignIn.css";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const history = useHistory();
   const handleLogin = () => {
-    console.log("email", email);
-    console.log("password", password);
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        email
+      )
+    ) {
+      fetch("/signin", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.error) {
+            setMessage(res.error);
+          } else {
+            console.log(res);
+            history.push("/");
+          }
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setMessage("Invaid Email Addrres");
+    }
   };
   return (
     <div className="signin">
@@ -29,8 +57,9 @@ export default function SignIn() {
         <button className="btn btn-success" onClick={handleLogin}>
           Sign In
         </button>
+        <h6>{message}</h6>
         <h6>
-        <Link to="/signup">Haven'nt SignUp ?</Link>
+          <Link to="/signup">Haven'nt SignUp ?</Link>
         </h6>
       </div>
     </div>

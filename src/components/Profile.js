@@ -8,7 +8,7 @@ export default function Profile() {
           <img src="https://picsum.photos/200/300"></img>
         </div>
         <div className="profile_info">
-          <h3>Tarun kumar</h3>
+          <h3>Tarun</h3>
           <div className="profile_follower">
             <h6>posts 80</h6>
             <h6>follower 80</h6>
