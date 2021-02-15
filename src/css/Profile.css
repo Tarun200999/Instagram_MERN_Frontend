@@ -1,0 +1,38 @@
+.profile {
+  margin: 10px;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+}
+.profile_image > img {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+.profile_details {
+  display: flex;
+  align-items: center;
+  border-bottom: 10px solid gray;
+}
+.profile_info {
+  margin-left: 20vw;
+}
+
+.profile_follower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile_posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top:10px;
+  margin: 5px;
+  padding: 10px;
+}
+.post_item{
+    width:30%;
+    margin-top:10px;
+    border-radius: 10px;
+}
