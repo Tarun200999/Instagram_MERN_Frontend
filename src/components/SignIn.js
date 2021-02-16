@@ -1,9 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState ,useContext} from "react";
+import { UserContext } from ".././App";
 import { Link, useHistory } from "react-router-dom";
 import "../css/SignIn.css";
 
 export default function SignIn() {
+  const {state,dispatch}=useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -30,6 +32,12 @@ export default function SignIn() {
             setMessage(res.error);
           } else {
             console.log(res);
+            localStorage.setItem("jwt", res.token);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            dispatch({
+              type:"USER",
+              payload:res.user
+            })
             history.push("/");
           }
         })

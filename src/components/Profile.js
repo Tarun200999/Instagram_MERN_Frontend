@@ -1,5 +1,6 @@
-import React from "react";
+import React ,{useContext}from "react";
 import "../css/Profile.css";
+import {UserContext} from ".././App";
 export default function Profile() {
   return (
     <div className="profile">
