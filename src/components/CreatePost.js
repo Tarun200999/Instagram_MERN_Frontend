@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 
 function CreatePost() {
   const [title, setTitle] = useState("");
@@ -6,9 +6,7 @@ function CreatePost() {
   const [image, setImage] = useState("");
   const [photoURL, setUrl] = useState("");
   const [message, setMessage] = useState("");
-
   useEffect(() => {
-    console.log("Photo Url changed");
     if (photoURL) {
       fetch("/create", {
         method: "post",

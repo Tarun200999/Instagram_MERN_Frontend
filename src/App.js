@@ -13,6 +13,7 @@ export const UserContext = createContext(); //context is created to provide to a
 const MyApp = () => {
   const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
+  
   useEffect(() => {
     const userfromLocalstorage = JSON.parse(localStorage.getItem("user"));
     if (userfromLocalstorage) {
@@ -20,9 +21,8 @@ const MyApp = () => {
         type: "USER",
         payload: userfromLocalstorage,
       });
-      history.push("/");
     } else {
-      history.push("/signin");
+     // history.push("/signin");
     }
   }, []);
   return (
@@ -50,7 +50,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, intialState); // we have provided reducer and intialstate
   // whenever any component calls the dispatch method it will come to usereducer than it will call the userreducer
   // and it will change the state as it is avalaible to  all component via useContext
-  useEffect(() => {}, []);
   return (
     <UserContext.Provider value={{ state: state, dispatch: dispatch }}>
       <BrowserRouter>

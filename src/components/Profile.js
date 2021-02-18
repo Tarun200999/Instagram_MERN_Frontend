@@ -1,7 +1,22 @@
-import React ,{useContext}from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../css/Profile.css";
-import {UserContext} from ".././App";
+import { UserContext } from ".././App";
 export default function Profile() {
+  const [mypost, setPost] = useState([]);
+  useEffect(() => {
+    fetch("/mypost", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setPost(result.post);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <div className="profile">
       <div className="profile_details">
@@ -19,16 +34,9 @@ export default function Profile() {
         </div>
       </div>
       <div className="profile_posts">
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
-        <img className="post_item" src="https://picsum.photos/200/300"></img>
+        {mypost.map((item) => {
+          return <img src={item.photo}></img>;
+        })}
       </div>
     </div>
   );

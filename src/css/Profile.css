@@ -1,6 +1,6 @@
 .profile {
   margin: 10px;
-  padding:10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -27,12 +27,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top:10px;
+  margin-top: 10px;
   margin: 5px;
   padding: 10px;
 }
-.post_item{
-    width:30%;
-    margin-top:10px;
-    border-radius: 10px;
+.post_item {
+  width: 30%;
+  margin-top: 10px;
+  border-radius: 10px;
 }
